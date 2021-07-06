@@ -30,8 +30,6 @@ function house(context) {
         height : TILE_SIZE,
         "|" : [context.sprite("shoji"), context.solid()],
         "=" : [context.sprite("tatami")],
-        "@" : [context.sprite("aq")],
-        "r" : [context.sprite("rm"), context.solid(), "interactable"],
     }
 
     const level = context.addLevel(
@@ -39,17 +37,25 @@ function house(context) {
         levelCfg
     );
 
-    const player = level.spawn("@", STARTING_POS);
+    const player = add([
+        context.sprite("aq"),
+        context.pos(STARTING_POS.scale(TILE_SIZE)),
+        playerCharacter(context, MOVE_SPEED)
+    ]);
 
-    const rm = level.spawn("r", context.vec2(1,4));
+    const rm = add([
+        context.sprite("rm"), 
+        context.pos(vec2(1,4).scale(TILE_SIZE)),
+        context.solid(),
+        "interactable",
+        interactable("reimu", context, player)
+    ]);
 
-    rm.use(interactable("reimu", context, player));
-
+    movement(context, player);
     player.action(() => {
         player.resolve();
         context.camPos(player.pos);
     });
-    movement(context, player);
     interaction(player);
 }
 
@@ -65,15 +71,15 @@ function movement(context, player) {
         // context.keyDown(dir, () => {
         //     player.move(dirs[dir].scale(TILE_SIZE * MOVE_SPEED));
         // });
-        // context.keyPressRep(dir, () => {
-        //     player.facing = dirs[dir];
-        //     if (!player.isMoving()) {
-        //         player.takeStep(dirs[dir].scale(TILE_SIZE));
-        //     }
-        // });
         context.keyPressRep(dir, () => {
-            player.setGridPos(player.gridPos.add(dirs[dir]));
-        })
+            player.facing = dirs[dir];
+            if (!player.isMoving()) {
+                player.takeStep(dirs[dir].scale(TILE_SIZE));
+            }
+        });
+        // context.keyPressRep(dir, () => {
+        //     player.setGridPos(player.gridPos.add(dirs[dir]));
+        // })
     }
 }
 
