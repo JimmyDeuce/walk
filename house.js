@@ -1,5 +1,6 @@
 const TILE_SIZE = 64;
 const MOVE_SPEED = 1.5; // Multiply by tile size
+const MOVEMENT_BLOCKERS = ["|"];
 
 function house(context) {
     const STARTING_POS = context.vec2(5, 4);
@@ -36,6 +37,16 @@ function house(context) {
         maps[0],
         levelCfg
     );
+
+    var blocked = [];
+
+    let i = 0;
+    maps[0].forEach(row => {
+        row.split("").forEach(symbol => {
+            blocked[i] = MOVEMENT_BLOCKERS.includes(symbol);
+            i++;
+        })
+    });
 
     const player = add([
         context.sprite("aq"),
