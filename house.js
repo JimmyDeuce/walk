@@ -2,7 +2,7 @@ const TILE_SIZE = 64;
 const MOVE_SPEED = 1.5; // Multiply by tile size
 const MOVEMENT_BLOCKERS = ["|"];
 
-function house(context) {
+function house() {
     const STARTING_POS = context.vec2(5, 4);
     const maps = [
         [
@@ -51,7 +51,7 @@ function house(context) {
     const player = add([
         context.sprite("aq"),
         context.pos(STARTING_POS.scale(TILE_SIZE)),
-        playerCharacter(context, MOVE_SPEED)
+        playerCharacter(MOVE_SPEED)
     ]);
 
     const rm = add([
@@ -59,10 +59,10 @@ function house(context) {
         context.pos(vec2(1,4).scale(TILE_SIZE)),
         context.solid(),
         "interactable",
-        interactable("reimu", context, player)
+        interactable("reimu", player)
     ]);
 
-    movement(context, player);
+    movement(player);
     player.action(() => {
         player.resolve();
         context.camPos(player.pos);
@@ -70,7 +70,7 @@ function house(context) {
     interaction(player);
 }
 
-function movement(context, player) {
+function movement(player) {
     const dirs = {
 		"left": context.vec2(-1, 0),
 		"right": context.vec2(1, 0),

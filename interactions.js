@@ -1,7 +1,7 @@
-function interactable(name, k, aq) {
+function interactable(name, aq) {
     switch (name) {
         case "reimu":
-            return reimu(k, aq);
+            return reimu(aq);
             break;
     
         default:
@@ -9,24 +9,23 @@ function interactable(name, k, aq) {
     }
 }
 
-function reimu(ctx, player) {
-    const k = ctx;
+function reimu(player) {
     const aq = player;
     return {
         interact() {
-            makeHearts(k, aq, this);
+            makeHearts(aq, this);
         }
     }
 }
 
-function makeHearts(k, a, b) {
+function makeHearts(a, b) {
     const hearts = [
-        k.add([k.sprite("heart"), k.pos(a.pos.add(0, -64))]),
-        k.add([k.sprite("heart"), k.pos(b.pos.add(0, -64))])
+        context.add([context.sprite("heart"), context.pos(a.pos.add(0, -64))]),
+        context.add([context.sprite("heart"), context.pos(b.pos.add(0, -64))])
     ];
-    k.wait(1, () => {
+    context.wait(1, () => {
         hearts.forEach(heart => {
-            k.destroy(heart);
+            context.destroy(heart);
         });
     });
 }

@@ -18,7 +18,7 @@ context.loadSprite("heart", "heart.png");
 
 context.scene("house", () => {
 
-    house(context);
+    house();
 
 });
 
