@@ -9,17 +9,17 @@ const context = kaboom({
 // context.loadSprite("aq", "B8iJWzY.png");
 // context.loadSprite("rm", "74bKMMN.png");
 // context.loadSprite("heart", "rFm0sO1.png");
-context.loadRoot("assets/");
-context.loadSprite("tatami", "tatami.png");
-context.loadSprite("shoji", "shoji.png");
-context.loadSprite("aq", "aq.png");
-context.loadSprite("rm", "rm.png");
-context.loadSprite("heart", "heart.png");
+loadRoot("assets/");
+loadSprite("tatami", "tatami.png");
+loadSprite("shoji", "shoji.png");
+loadSprite("aq", "aq.png");
+loadSprite("rm", "rm.png");
+loadSprite("heart", "heart.png");
 
-context.scene("house", () => {
+scene("house", () => {
 
     house();
 
 });
 
-context.start("house");
+start("house");

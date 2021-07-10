@@ -20,12 +20,12 @@ function reimu(player) {
 
 function makeHearts(a, b) {
     const hearts = [
-        context.add([context.sprite("heart"), context.pos(a.pos.add(0, -64))]),
-        context.add([context.sprite("heart"), context.pos(b.pos.add(0, -64))])
+        add([sprite("heart"), pos(a.pos.add(0, -64))]),
+        add([sprite("heart"), pos(b.pos.add(0, -64))])
     ];
-    context.wait(1, () => {
+    wait(1, () => {
         hearts.forEach(heart => {
-            context.destroy(heart);
+            destroy(heart);
         });
     });
 }
