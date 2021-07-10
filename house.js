@@ -3,7 +3,7 @@ const MOVE_SPEED = 1.5; // Multiply by tile size
 const MOVEMENT_BLOCKERS = ["|"];
 
 function house() {
-    const STARTING_POS = context.vec2(5, 4);
+    const STARTING_POS = vec2(5, 4);
     const maps = [
         [
             "||||||||||",
@@ -29,11 +29,11 @@ function house() {
     const levelCfg = {
         width : TILE_SIZE,
         height : TILE_SIZE,
-        "|" : [context.sprite("shoji"), context.solid()],
-        "=" : [context.sprite("tatami")],
+        "|" : [sprite("shoji"), solid()],
+        "=" : [sprite("tatami")],
     }
 
-    const level = context.addLevel(
+    const level = addLevel(
         maps[0],
         levelCfg
     );
@@ -49,15 +49,15 @@ function house() {
     });
 
     const player = add([
-        context.sprite("aq"),
-        context.pos(STARTING_POS.scale(TILE_SIZE)),
+        sprite("aq"),
+        pos(STARTING_POS.scale(TILE_SIZE)),
         playerCharacter(MOVE_SPEED)
     ]);
 
     const rm = add([
-        context.sprite("rm"), 
-        context.pos(vec2(1,4).scale(TILE_SIZE)),
-        context.solid(),
+        sprite("rm"), 
+        pos(vec2(1,4).scale(TILE_SIZE)),
+        solid(),
         "interactable",
         interactable("reimu", player)
     ]);
@@ -65,24 +65,24 @@ function house() {
     movement(player);
     player.action(() => {
         player.resolve();
-        context.camPos(player.pos);
+        camPos(player.pos);
     });
     interaction(player);
 }
 
 function movement(player) {
     const dirs = {
-		"left": context.vec2(-1, 0),
-		"right": context.vec2(1, 0),
-		"up": context.vec2(0, -1),
-		"down": context.vec2(0, 1),
+		"left": vec2(-1, 0),
+		"right": vec2(1, 0),
+		"up": vec2(0, -1),
+		"down": vec2(0, 1),
 	};
 
     for (const dir in dirs) {
         // context.keyDown(dir, () => {
         //     player.move(dirs[dir].scale(TILE_SIZE * MOVE_SPEED));
         // });
-        context.keyPressRep(dir, () => {
+        keyPressRep(dir, () => {
             player.facing = dirs[dir];
             if (!player.isMoving()) {
                 player.takeStep(dirs[dir].scale(TILE_SIZE));
