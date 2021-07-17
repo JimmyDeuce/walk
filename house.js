@@ -3,6 +3,7 @@ const GRID_HEIGHT = 17;
 const TILE_SIZE = 64;
 const MOVE_SPEED = 1.5; // Multiply by tile size
 const MOVEMENT_BLOCKERS = ["|"];
+var blocked = [];
 
 function house() {
     const STARTING_POS = vec2(5, 4);
@@ -31,7 +32,7 @@ function house() {
     const levelCfg = {
         width : TILE_SIZE,
         height : TILE_SIZE,
-        "|" : [sprite("shoji"), solid()],
+        "|" : [sprite("shoji")],
         "=" : [sprite("tatami")],
     }
 
@@ -39,8 +40,6 @@ function house() {
         maps[0],
         levelCfg
     );
-
-    var blocked = [];
 
     let i = 0;
     maps[0].forEach(row => {

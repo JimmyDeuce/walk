@@ -10,7 +10,9 @@ function playerCharacter(speed) {
             startingPos = this.pos;
             moveVector = movement;
             let destination = startingPos.add(moveVector);
-            moving = true;
+            if (!blocked[xyToIndex(destination.x, destination.y)]) {
+                moving = true;
+            }
         },
         isMoving() {
             return moving;
