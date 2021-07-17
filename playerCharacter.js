@@ -28,3 +28,7 @@ function playerCharacter(speed) {
         },
     };
 }
+
+function xyToIndex(x, y) {
+    return x + x * y;
+}
