@@ -1,3 +1,5 @@
+const GRID_WIDTH = 10;
+const GRID_HEIGHT = 17;
 const TILE_SIZE = 64;
 const MOVE_SPEED = 1.5; // Multiply by tile size
 const MOVEMENT_BLOCKERS = ["|"];

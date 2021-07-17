@@ -8,8 +8,9 @@ function playerCharacter(speed) {
         speed : speed,
         takeStep(movement) {
             startingPos = this.pos;
-            moving = true;
             moveVector = movement;
+            let destination = startingPos.add(moveVector);
+            moving = true;
         },
         isMoving() {
             return moving;
@@ -30,5 +31,5 @@ function playerCharacter(speed) {
 }
 
 function xyToIndex(x, y) {
-    return x + x * y;
+    return x + GRID_WIDTH * y;
 }
